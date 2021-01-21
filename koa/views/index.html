@@ -2,7 +2,7 @@
  * @Author: your name
  * @LastEditors: xiasong
  * @Date: 2021-01-20 14:58:41
- * @LastEditTime: 2021-01-20 15:24:31
+ * @LastEditTime: 2021-01-21 18:14:39
  * @Description: description
  * @FilePath: \package_all\koa\views\index.html
 -->
@@ -14,6 +14,24 @@
     <title>Document</title>
   </head>
   <body>
+    <a href="/add"> 增加成员</a>
+    <table border="1" cellpadding="1" cellspacing="0">
+      <tr>
+        <th>name</th>
+        <th>age</th>
+        <th>sex</th>
+        <th>height</th>
+      </tr>
+      {{each dbData }}
+      <tr>
+        <td>{{ $value.name }}</td>
+        <td>{{ $value.age }}</td>
+        <td>{{ $value.sex }}</td>
+        <td>{{ $value.height }}</td>
+      </tr>
+      {{/each}}
+    </table>
+
     <!-- 原文支持,支持dom -->
     {{@ data.value }}
     <!-- 直接引用 -->
@@ -29,7 +47,35 @@
     {{ each data.list }}
     <li><span> index==>{{$index}} </span><span>value==>{{$value}}</span></li>
     {{/each}}
+    <br />
     <!-- 导入模板 -->
     {{ include '../public/footer.html' }}
+    <script type="text/javascript">
+      // class DB {
+      //   static getInstance() {
+      //     // 单例模式
+      //     if (!DB.instance) {
+      //       DB.instance = new DB();
+      //     }
+
+      //     return DB.instance;
+      //   }
+
+      //   constructor() {
+      //     console.log("构造函数被实例的时候触发");
+      //     this.connect();
+      //   }
+
+      //   connect() {
+      //     console.log(1);
+      //   }
+      // }
+
+      // const dB1 = DB.getInstance();
+      // const dB2 = DB.getInstance();
+      // console.log(dB1 === dB2);
+      // dB1.connect();
+      // dB2.connect();
+    </script>
   </body>
 </html>

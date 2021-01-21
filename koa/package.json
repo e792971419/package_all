@@ -19,6 +19,7 @@
     "koa-session": "^6.1.0",
     "koa-static": "^5.0.0",
     "md5": "^2.3.0",
+    "mongodb": "^3.6.3",
     "node-media-server": "^2.2.4"
   }
 }

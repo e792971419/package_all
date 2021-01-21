@@ -1,0 +1,39 @@
+<!--
+ * @Author: your name
+ * @LastEditors: xiasong
+ * @Date: 2021-01-21 17:09:24
+ * @LastEditTime: 2021-01-21 17:52:48
+ * @Description: description 增加成员
+ * @FilePath: \package_all\koa\views\add.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>增加成员</title>
+  </head>
+  <body>
+    <h3>增加成员</h3>
+    <form action="/doadd" method="POST">
+      用户名： <input type="text" name="name" />
+      <br />
+      <br />
+      年 &nbsp;&nbsp;龄： <input type="number" name="age" />
+      <br />
+      <br />
+      性 &nbsp;&nbsp;别： <label for="male"> male </label>
+      <input type="radio" name="sex" id="male" value="male" />
+      <label for="fremale">fremale</label>
+      <input type="radio" name="sex" id="fremale" value="fremale" />
+      <br />
+      <br />
+      身 &nbsp;&nbsp;高： <input type="number" name="height" />
+      <br />
+      <br />
+      <button type="submit">提交</button>
+      <button type="reset">重置</button>
+    </form>
+  </body>
+</html>

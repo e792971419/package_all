@@ -13,6 +13,9 @@ const md5 = require("md5"); // md5 加密的一个包
 const session = require("koa-session"); // 储存会话级别的info
 const render = require("koa-art-template"); // 渲染模板的
 
+// 引入自己写的module
+const DB = require("./module/db"); /* 实例 db */
+
 const staticPath = "/static";
 
 const app = new Koa();
@@ -29,6 +32,11 @@ const CONFIG = {
   renew: true,
 };
 app.use(session(CONFIG, app));
+
+// 用于解析 post 请求的数据
+app.use(
+  bodyParser()
+); /* 这个要放到 路由的上面 要不然 rouer.post 就解析不了 post 提交的数据了 */
 
 render(app, {
   root: path.join(__dirname, "views"),
@@ -140,10 +148,6 @@ router.get("/", async (ctx, next) => {
   await next();
 });
 
-// router.post("/", async (ctx, next) => {
-//   ctx.body = ctx;
-// });
-
 router.get("/test", async (ctx, next) => {
   // console.log(ctx.cookies.get("demo"));
   console.log(ctx.session.demo2);
@@ -182,6 +186,7 @@ router.get("/good/:aid", async (ctx, next) => {
   await next();
 });
 
+// 展示 成员 列表
 router.get("/html", async (ctx, next) => {
   let curObj = {
     title: "art-template",
@@ -189,11 +194,36 @@ router.get("/html", async (ctx, next) => {
     flag: 1,
     value: "<h2>1111</h2>",
   };
+  const result = await DB.find("user", {});
+  console.log(result);
   await ctx.render("index", {
     data: curObj,
+    dbData: result,
   });
 
   await next();
+});
+
+// 增加 成员
+router.get("/add", async (ctx, next) => {
+  await ctx.render("add");
+  await next();
+});
+
+router.post("/doadd", async (ctx, next) => {
+  console.log(ctx.request.body);
+  const data = await DB.insert("user", ctx.request.body);
+
+  try {
+    if (data.result.ok === 1) {
+      ctx.redirect("/html");
+    } else {
+      ctx.redirect("/add");
+    }
+  } catch (err) {
+    ctx.redirect("/add");
+  }
+  // await next();
 });
 
 app.use(router.routes()); // 启动路由
@@ -213,8 +243,6 @@ app.use(async (ctx, next) => {
   }
 });
 
-app.use(bodyParser());
-
 app.listen(3000, () => {
-  console.log("app serve at port 3000");
+  console.log("app serve at http://localhost:3000/");
 });
