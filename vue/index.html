@@ -1,0 +1,55 @@
+<!--
+ * @Author: your name
+ * @LastEditors: xiasong
+ * @Date: 2021-01-26 16:32:38
+ * @LastEditTime: 2021-01-26 17:33:03
+ * @Description: description vue 双向数据绑定 https://blog.csdn.net/wuxy720/article/details/80151610 或者 https://www.cnblogs.com/canfoo/p/6891868.html
+ * @FilePath: \package_all\vue\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue 的双向数据绑定</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" id="a" />
+      <span id="b"></span>
+    </div>
+    <br />
+    <div id="vue"><input type="text" v-model="text" />{{ text}}</div>
+    <script>
+      // 初步体验
+      const obj = {};
+      let val = "hello";
+      Object.defineProperty(obj, "hello", {
+        get() {
+          console.log("get val: " + val);
+        },
+        set(newVal) {
+          val = newVal;
+          console.log("set val: " + val);
+          document.getElementById("a").value = val;
+          document.getElementById("b").innerHTML = val;
+        },
+      });
+
+      //   obj.hello;
+
+      //   obj.hello = "hi ";
+      document.addEventListener("keyup", function (e) {
+        obj.hello = e.target.value;
+      });
+    </script>
+    <script>
+      var vm = new SelfVue({
+        el: "vue",
+        data: {
+          text: "hello world",
+        },
+      });
+    </script>
+  </body>
+</html>
