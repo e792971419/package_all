@@ -1,0 +1,45 @@
+<!--
+ * @Author: your name
+ * @LastEditors: xiasong
+ * @Date: 2021-01-26 17:32:15
+ * @LastEditTime: 2021-01-26 18:26:09
+ * @Description: description video.js 的使用
+ * @FilePath: \package_all\videojs\index.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>video.js的使用</title>
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/video.js/7.10.1/video-js.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/react/17.0.0/umd/react.development.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.0/umd/react-dom.development.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/video.js/7.10.1/video.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      const {
+        useEffect,
+        useState,
+        useRef,
+        useContext,
+        createContext,
+        Component,
+      } = React;
+      const Videojs = videojs;
+      class VideoTemplate extends Component {
+        render() {
+          return <div>1111</div>;
+        }
+      }
+      ReactDOM.render(<VideoTemplate />, document.getElementById("app"));
+    </script>
+  </body>
+</html>
