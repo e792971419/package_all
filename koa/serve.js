@@ -241,7 +241,7 @@ app.use(async (ctx, next) => {
     ctx.status = 404;
     ctx.body = "这是一个404页面";
   }
-});
+});  
 
 app.listen(3000, () => {
   console.log("app serve at http://localhost:3000/");
