@@ -59,6 +59,13 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  // 注意这里请求本地json 需要把 开发地址 http://localhost:8081/ 加到前面，要不然请求不到
+  fetch('http://localhost:8081/app.json')
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+    });
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
